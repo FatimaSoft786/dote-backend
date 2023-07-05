@@ -47,8 +47,7 @@ router.post('/createReport/:id',upload.single("reportPhoto"),async(req,res)=>{
         successMessage: 'Child feed uploaded'
     });
     } catch (error) {
-        res.status(500).send({errorMessage: error
-        });
+        res.status(404).send(error);
     }
 
 });
