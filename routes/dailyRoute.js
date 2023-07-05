@@ -52,51 +52,6 @@ router.post('/createReport/:id',upload.single("reportPhoto"),async(req,res)=>{
 
 });
 
-// router.post('/createReport/:id',upload.single("application"),async(req,res)=>{
-//  try {
-
-//     const staffFind = await Staff.findOne({_id: req.params.id});
-//     console.log(req.file.location);
-//     console.log(staffFind);
-//        // req.file.location
-
-
-
-        
-//     } catch (error) {
-//         res.status(500).send(error)
-//     }
-
-// });
-
-
-
-
-
-// router.post('/createReport',async(req,res)=>{
-// try {
-// const staffFind = await Staff.findOne({_id: req.body.staffId});
-// let data = {firstName: staffFind.firstName,lastName: staffFind.lastName, profilePicture: staffFind.profileUrl, staffId: staffFind._id}
-// const result = await DailyReport.create({
-//     staffDetails: data,
-//     childId: req.body.childId,
-//     feedName: req.body.feedName,
-//     roomName: req.body.roomName,
-//     description: req.body.description
-// });
-// res.status(200).send({
-//     successMessage: 'Child feed uploaded'
-// });
-// } catch (error) {
-//     res.status(500).send({
-//         error: {
-//             errorMessage: [error]
-//         }
-//     });
-// }
-// });
-
-
 router.get("/getFeed",async(req,res)=>{
 try {
   const result = await DailyReport.find().sort({createdAt: 'desc'});
