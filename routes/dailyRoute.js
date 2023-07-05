@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const DailyReport = require("../model//DailyReport");
-const Staff = require('../model/StaffModel');
+const Child = require("../model/ChildModel");
 const multer = require("multer");
 const multerS3 = require("multer-s3");
 const AWS = require("aws-sdk");
@@ -32,7 +32,6 @@ var upload = multer({
 
 
 router.post('/createReport/:id',upload.single("reportPhoto"),async(req,res)=>{
-    res.status(200).send(req.file.location);
   try {
     const childFind = await Child.findOne({_id: req.params.id});
     let data = {firstName: childFind.firstName,lastName: childFind.lastName, profilePicture: childFind.profileUrl}
