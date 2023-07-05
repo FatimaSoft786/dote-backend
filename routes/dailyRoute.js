@@ -32,6 +32,7 @@ var upload = multer({
 
 
 router.post('/createReport/:id',upload.single("reportPhoto"),async(req,res)=>{
+    res.status(200).send(req.file.location);
   try {
     const childFind = await Child.findOne({_id: req.params.id});
     let data = {firstName: childFind.firstName,lastName: childFind.lastName, profilePicture: childFind.profileUrl}
