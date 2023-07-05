@@ -31,22 +31,47 @@ var upload = multer({
 });
 
 
-router.post('/createReport/:id',upload.single("application"),async(req,res)=>{
- try {
+router.post('/createReport/:id',upload.single("reportPhoto"),async(req,res)=>{
+  try {
+    const childFind = await Child.findOne({_id: req.params.id});
+    let data = {firstName: childFind.firstName,lastName: childFind.lastName, profilePicture: childFind.profileUrl}
+    const result = await DailyReport.create({
+        childDetails: data,
+        staffId: req.body.staffId,
+        feedName: req.body.feedName,
+        roomName: req.body.roomName,
+        description: req.body.description,
+        photo: req.file.location
+    });
+    res.status(200).send({
+        successMessage: 'Child feed uploaded'
+    });
+    } catch (error) {
+        res.status(500).send({
+            error: {
+                errorMessage: [error]
+            }
+        });
+    }
 
-    const staffFind = await Staff.findOne({_id: req.params.id});
-    console.log(req.file.location);
-    console.log(staffFind);
-       // req.file.location
+});
+
+// router.post('/createReport/:id',upload.single("application"),async(req,res)=>{
+//  try {
+
+//     const staffFind = await Staff.findOne({_id: req.params.id});
+//     console.log(req.file.location);
+//     console.log(staffFind);
+//        // req.file.location
 
 
 
         
-    } catch (error) {
-        res.status(500).send(error)
-    }
+//     } catch (error) {
+//         res.status(500).send(error)
+//     }
 
-});
+// });
 
 
 
