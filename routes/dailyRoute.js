@@ -38,6 +38,7 @@ router.post(
   async (req, res) => {
     try {
       const childFind = await Student.findOne({ _id: req.params.id });
+      console.log(childFind);
       let data = {
         firstName: childFind.firstName,
         lastName: childFind.lastName
@@ -51,6 +52,7 @@ router.post(
           description: req.body.description,
           photo: req.file.location,
         });
+      console.log(data);
         res.status(200).send({
           successMessage: result,
         });
