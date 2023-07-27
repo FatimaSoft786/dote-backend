@@ -32,25 +32,39 @@ var upload = multer({
 });
 
 
-router.post('/createReport/:id',upload.single("reportPhoto"),async(req,res)=>{
-  try {
-   const childFind = await Student.findOne({_id: req.params.id});
-    let data = {firstName: childFind.firstName,lastName: childFind.lastName, profilePicture: childFind.profileUrl}
-    const result = await DailyReport.create({
-        childDetails: data,
-        feedName: req.body.feedName,
-        roomName: req.body.roomName,
-        description: req.body.description,
-        photo: req.file.location
-    });
-    res.status(200).send({
-        successMessage: 'Child feed uploaded'
-    });
+router.post(
+  "/createReport/:id",
+  upload.single("reportPhoto"),
+  async (req, res) => {
+    try {
+      const childFind = await Student.findOne({ _id: req.params.id });
+      let data = {
+        firstName: childFind.firstName,
+        lastName: childFind.lastName
+      };
+      if (data) {
+        const result = await DailyReport.create({
+          childDetails: data,
+          staffId: req.body.staffId,
+          feedName: req.body.feedName,
+          roomName: req.body.roomName,
+          description: req.body.description,
+          photo: req.file.location,
+        });
+        res.status(200).send({
+          successMessage: result,
+        });
+      }
     } catch (error) {
-        res.status(404).send(error);
+      console.log(error);
+      res.status(500).send({
+        error: {
+          errorMessage: [error],
+        },
+      });
     }
-
-});
+  }
+);
 
 router.get("/getFeed",async(req,res)=>{
 try {
