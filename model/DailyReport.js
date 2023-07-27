@@ -1,22 +1,13 @@
 const mongoose = require("mongoose");
 const dailySchema = new mongoose.Schema(
   {
-    staffDetails: {
+    childDetails: {
       firstName: {
         type: String,
       },
       lastName: {
         type: String,
-      },
-      profilePicture: {
-        type: String,
-      },
-      staffId: {
-        type: String,
-      },
-    },
-    childId: {
-      type: String,
+      }
     },
     parentId: {
       type: String,
