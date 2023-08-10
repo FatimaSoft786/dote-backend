@@ -9,13 +9,15 @@ app.use(express.json());
 const port = process.env.PORT || 5000;
 
 
-  app.use(function(req, res, next) {
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
-    res.header("Access-Control-Allow-Headers", "x-access-token, Origin, X-Requested-With, Content-Type, Accept");
-    next();
-  });
+  // app.use(function(req, res, next) {
+  //   res.header("Access-Control-Allow-Origin", "*");
+  //   res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+  //   res.header("Access-Control-Allow-Headers", "x-access-token, Origin, X-Requested-With, Content-Type, Accept");
+  //   next();
+  // });
 
+ const ParentRoute = require('./routes/ParentRoute');
+app.use('/api',ParentRoute);
   const authRoute = require("./routes/DirectorsRoute");
   const pictureRoute = require("./routes/DirectorProfileRoute");
   const roomRoute = require("./routes/RoomsRoute");
@@ -28,7 +30,7 @@ const port = process.env.PORT || 5000;
   const chatRoute = require("./routes/ChatRoute");
   const messageRoute = require("./routes/MessageRoute");
   const StudentRoute = require('./routes/StudentRoute');
-  const ParentRoute = require('./routes/ParentRoute');
+ 
   app.use('/api',authRoute);
   app.use('/api',pictureRoute);
   app.use('/api',roomRoute);
@@ -41,7 +43,7 @@ const port = process.env.PORT || 5000;
   app.use('/api',chatRoute);
   app.use('/api',messageRoute);
   app.use('/api',StudentRoute);
-  app.use('/api',ParentRoute);
+  
   
 
   app.listen(port, ()=>{
