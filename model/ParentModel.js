@@ -8,6 +8,7 @@ const ParentSchema = new mongoose.Schema(
     password: {
       type: String,
     },
+      isActive: Boolean,
     otp: {
       type: String,
       required: true,
