@@ -39,6 +39,7 @@ router.post("/createParents", async (req, res) => {
           email: email,
           password: await bcrypt.hash(password, 10),
           otp: otp,
+          isActive: true,
           otpExpiration: otpExpiration,
           schoolCode: schoolCode,
         });
