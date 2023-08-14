@@ -159,6 +159,7 @@ router.post("/parentsLogin", async (req, res) => {
         email: email,
       });
       if (checkUser) {
+        res.stat(200).send(checkUser);
         const matchPassword = await bcrypt.compare(
           password,
           checkUser.password
