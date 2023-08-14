@@ -311,4 +311,27 @@ router.post("/staffLogin",async(req,res)=>{
   }
 });
 
+router.post("/StaffDeleteAccount/:id",async(req,res)=>{
+
+  try {
+  
+    const data = await Staff.findOne({_id: req.params.id});
+    if(data){
+      const result = await Staff.findByIdAndUpdate(
+        { _id: data._id },
+        { $set: { isActive: false } },
+        { new: true }
+      );
+      console.log(result);
+      res.status(200).send("Your account deleted");
+    }
+    
+  } catch (error) {
+    res.status(400).send(error);
+  }
+  
+  });
+
+
+
 module.exports = router;
