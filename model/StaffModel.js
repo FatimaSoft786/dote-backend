@@ -85,6 +85,7 @@ const StaffSchema = new mongoose.Schema(
       type: String,
        default: 'Signed-up'
     },
+      isActive: Boolean,
     profileUrl: {
       type: String,
       default: "",
