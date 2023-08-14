@@ -67,6 +67,29 @@ router.post("/createParents", async (req, res) => {
   }
 });
 
+router.post("/ParentsDeleteAccount/:id",async(req,res)=>{
+
+try {
+
+  const data = await Parent.findOne({_id: req.params.id});
+  if(data){
+    const result = await Parent.findByIdAndUpdate(
+      { _id: data._id },
+      { $set: { isActive: false } },
+      { new: true }
+    );
+    console.log(result);
+    res.status(200).send("Your account deleted");
+  }
+  
+} catch (error) {
+  res.status(400).send(error);
+}
+
+});
+
+
+
 router.post("/verifyEmail", async (req, res) => {
   try {
     const result = await Parent.findOne({ otp: req.body.otp });
