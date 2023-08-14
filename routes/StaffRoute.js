@@ -135,6 +135,7 @@ router.post("/createStaff", async (req, res) => {
               role: role,
               password: hash,
               directorId: directorId,
+                isActive: true
             });
 
        if(result){
