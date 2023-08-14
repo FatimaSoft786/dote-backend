@@ -43,21 +43,22 @@ router.post("/createParents", async (req, res) => {
           schoolCode: schoolCode,
         });
         if (result) {
-          let mailOption = {
-            from: process.env.SMTP_MAIL,
-            to: email,
-            subject: "dote support team",
-            text: `Your OTP code is: ${otp} and code will expire in 10 minutes`,
-          };
-          transporter.sendMail(mailOption, function (error) {
-            if (error) {
-              res.status(404).send(error);
-            } else {
-              res
-                .status(200)
-                .send({ successMessage: "Email sent successfully" });
-            }
-          });
+          res.status(200).send({ successMessage: "Email sent successfully" });
+          // let mailOption = {
+          //   from: process.env.SMTP_MAIL,
+          //   to: email,
+          //   subject: "dote support team",
+          //   text: `Your OTP code is: ${otp} and code will expire in 10 minutes`,
+          // };
+          // transporter.sendMail(mailOption, function (error) {
+          //   if (error) {
+          //     res.status(404).send(error);
+          //   } else {
+          //     res
+          //       .status(200)
+          //       .send({ successMessage: "Email sent successfully" });
+          //   }
+          // });
         }
       }
     } catch (error) {
