@@ -168,6 +168,7 @@ router.post("/parentsLogin", async (req, res) => {
             {
               id: checkUser._id,
               email: checkUser.email,
+              isActive: checkUser.isActive,
               registerTime: checkUser.createdAt,
             },
             process.env.SECRET,
