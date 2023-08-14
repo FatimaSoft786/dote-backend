@@ -8,6 +8,7 @@ const DirectorSchema =  mongoose.Schema({
         type: String,
         required: true
     },
+      isActive: Boolean,
     password: {
         type: String
     },
