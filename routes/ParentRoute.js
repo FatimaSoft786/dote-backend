@@ -150,6 +150,7 @@ router.post("/ParentResetPassword", async (req, res) => {
 router.post("/parentsLogin", async (req, res) => {
   const error = [];
   const { email, password } = req.body;
+  console.log(req.body);
   if (error.length > 0) {
     res.status(400).json({
       error: error,
