@@ -81,7 +81,7 @@ try {
       { new: true }
     );
     console.log(result);
-    res.status(200).send("Your account deleted");
+    res.status(200).send({successMessage: "Account deleted"});
   }
   
 } catch (error) {
