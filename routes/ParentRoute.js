@@ -43,6 +43,7 @@ router.post("/createParents", async (req, res) => {
           otpExpiration: otpExpiration,
           schoolCode: schoolCode,
         });
+        console.log(result);
         if (result) {
           res.status(200).send({ successMessage: "Email sent successfully" });
           // let mailOption = {
