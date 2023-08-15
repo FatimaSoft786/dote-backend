@@ -188,6 +188,7 @@ router.post("/parentsLogin", async (req, res) => {
           };
           res.status(200).cookie("authToken", token, options).json({
             successMessage: "Your Login Successful",
+            isActive: checkUser.isActive,
             token,
           });
         } else {
