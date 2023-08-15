@@ -161,8 +161,9 @@ router.post("/parentsLogin", async (req, res) => {
       const checkUser = await Parent.findOne({
         email: email,
       });
+      console.log(checkUser);
       if (checkUser) {
-        res.stat(200).send(checkUser);
+        
         const matchPassword = await bcrypt.compare(
           password,
           checkUser.password
